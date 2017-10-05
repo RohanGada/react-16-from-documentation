@@ -41,8 +41,8 @@ class Clock extends Component {
   }
 
   handleClick(e) {
-    console.log(e)
-    e.preventDefault()
+    console.log(e);
+    e.preventDefault();
   }
   render() {
     return (
@@ -52,7 +52,9 @@ class Clock extends Component {
             .state
             .date
             .toLocaleTimeString()}.</h2>
-        <button onClick={this.activateLasers.bind(this)}>
+        <button onClick={this
+          .activateLasers
+          .bind(this)}>
           {this.state.isToggleOn
             ? "YES"
             : "NO"}
