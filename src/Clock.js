@@ -18,17 +18,26 @@ class Clock extends Component {
 
   constructor(props) {
     super(props); //baseconstructor call
-    console.log(props)
-    let {warn,date} = props;
+    // console.log(props)
+    let {warn, date} = props;
     this.state = {
-      warn,date,
+      warn,
+      date,
       isToggleOn: true,
       isLoggedIn: false
     };
+    this.state.numbers = [1];
+  }
+
+  componentDidUpdate() {
+    // console.log('componentDidUpdate');
   }
 
   handleLoginClick(e) {
-    this.setState({isLoggedIn: false})
+ let numbers = this.state.numbers;
+
+ numbers.push(this.state.numbers[this.state.numbers.length - 1] + 1);
+    this.setState({numbers,isLoggedIn: false})
   }
 
   handleLogoutClick(e) {
@@ -37,7 +46,7 @@ class Clock extends Component {
 
   tick() {
     this.setState((prevState, props) => {
-      // console.log(prevState)
+      //  console.log(prevState)
       return ({
         date: new Date(prevState.date.setSeconds(prevState.date.getSeconds() + 1))
       })
@@ -45,8 +54,13 @@ class Clock extends Component {
   }
 
   componentDidMount() {
-    console.log('Mounted')
-    // this.timerId = setInterval(() => {   this.tick(); }, 1000);
+    // console.log('Mounted')
+    this.timerId = setInterval(() => {
+      this.tick();
+    }, 1000);
+  }
+  componentWillUpdate() {
+    // console.log('componentWillUpdate')
   }
 
   activateLasers() {
@@ -58,19 +72,20 @@ class Clock extends Component {
   }
 
   componentWillUnmount() {
-    console.log('Unmounted')
+    // console.log('Unmounted')
     clearInterval(this.timerId);
   }
 
   handleClick(e) {
-    console.log(e);
+    // console.log(e);
+    
     e.preventDefault();
   }
 
   render() {
-    // const isLoggedIn = this.state.isLoggedIn;
+    const isLoggedIn = this.state.isLoggedIn;
     // console.log(isLoggedIn,this.state.isLoggedIn)
-    console.count();
+    // console.count();
     let button = null;
     if (this.state.isLoggedIn) {
       button = <LoginButton onClick={this
@@ -81,7 +96,7 @@ class Clock extends Component {
         .handleLogoutClick
         .bind(this)}/>
     }
-    if(this.state.warn){
+    if (this.state.warn) {
       return null;
     }
     return (
@@ -102,7 +117,15 @@ class Clock extends Component {
           Click me
         </a>
         {button}
-      </div>  
+      <ul>
+        {
+          this.state.numbers.map((number) => 
+            <li>{number}
+            </li>
+          )
+        }
+      </ul>
+      </div>
     );
   }
 }
