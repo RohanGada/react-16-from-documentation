@@ -1,6 +1,19 @@
 import React, {Component} from 'react';
 // import './App.css';
-
+function LoginButton(props) {
+  return (
+    <button onClick={props.onClick}>
+      Login
+    </button>
+  );
+}
+function LogoutButton(props) {
+  return (
+    <button onClick={props.onClick}>
+      Logout
+    </button>
+  );
+}
 class Clock extends Component {
 
   constructor(props) {
@@ -8,9 +21,19 @@ class Clock extends Component {
     console.log(props)
     this.state = {
       date: props.date,
-      isToggleOn: true
+      isToggleOn: true,
+      isLoggedIn: false
     };
   }
+
+  handleLoginClick(e) {
+    this.setState({isLoggedIn: false})
+  }
+
+  handleLogoutClick(e) {
+    this.setState({isLoggedIn: true})
+  }
+
   tick() {
     this.setState((prevState, props) => {
       // console.log(prevState)
@@ -19,15 +42,13 @@ class Clock extends Component {
       })
     })
   }
+
   componentDidMount() {
     console.log('Mounted')
-    this.timerId = setInterval(() => {
-      this.tick();
-    }, 1000);
+    // this.timerId = setInterval(() => {   this.tick(); }, 1000);
   }
 
   activateLasers() {
-    console.log('clicked')
     this.setState((prevState) => {
       return ({
         isToggleOn: !prevState.isToggleOn
@@ -44,14 +65,29 @@ class Clock extends Component {
     console.log(e);
     e.preventDefault();
   }
+
   render() {
+    // const isLoggedIn = this.state.isLoggedIn;
+    // console.log(isLoggedIn,this.state.isLoggedIn)
+    console.count();
+    let button = null;
+    if (this.state.isLoggedIn) {
+      button = <LoginButton onClick={this
+        .handleLoginClick
+        .bind(this)}/>
+    } else {
+      button = <LogoutButton onClick={this
+        .handleLogoutClick
+        .bind(this)}/>
+    }
+
     return (
       <div>
         <h1>Hello, world!</h1>
-        <h2>It is {this
+        {/* <h2>It is {this
             .state
             .date
-            .toLocaleTimeString()}.</h2>
+            .toLocaleTimeString()}.</h2> */}
         <button onClick={this
           .activateLasers
           .bind(this)}>
@@ -62,6 +98,7 @@ class Clock extends Component {
         <a href='' onClick={this.handleClick}>
           Click me
         </a>
+        {button}
       </div>
     );
   }
