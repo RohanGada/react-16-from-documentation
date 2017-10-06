@@ -84,10 +84,10 @@ class Clock extends Component {
     return (
       <div>
         <h1>Hello, world!</h1>
-        {/* <h2>It is {this
+        <h2>It is {this
             .state
             .date
-            .toLocaleTimeString()}.</h2> */}
+            .toLocaleTimeString()}.</h2>
         <button onClick={this
           .activateLasers
           .bind(this)}>
@@ -99,7 +99,7 @@ class Clock extends Component {
           Click me
         </a>
         {button}
-      </div>
+      </div>  
     );
   }
 }
