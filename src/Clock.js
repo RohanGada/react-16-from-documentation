@@ -19,8 +19,9 @@ class Clock extends Component {
   constructor(props) {
     super(props); //baseconstructor call
     console.log(props)
+    let {warn,date} = props;
     this.state = {
-      date: props.date,
+      warn,date,
       isToggleOn: true,
       isLoggedIn: false
     };
@@ -80,7 +81,9 @@ class Clock extends Component {
         .handleLogoutClick
         .bind(this)}/>
     }
-
+    if(this.state.warn){
+      return null;
+    }
     return (
       <div>
         <h1>Hello, world!</h1>

@@ -17,8 +17,7 @@ class App extends Component {
           and save to reload.
         </p>
         <Clock date={new Date(new Date().setMinutes(20))}/>
-        <Clock date={(new Date())}/>
-        <Clock date={(new Date())}/>
+        <Clock warn={true} date={new Date(new Date().setMinutes(20))}/>
       </div>
     );
   }
