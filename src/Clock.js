@@ -24,9 +24,9 @@ class Clock extends Component {
       warn,
       date,
       isToggleOn: true,
-      isLoggedIn: false
+      isLoggedIn: false,
+      numbers: [1]
     };
-    this.state.numbers = [1];
   }
 
   componentDidUpdate() {
@@ -34,10 +34,10 @@ class Clock extends Component {
   }
 
   handleLoginClick(e) {
- let numbers = this.state.numbers;
+    let numbers = this.state.numbers;
 
- numbers.push(this.state.numbers[this.state.numbers.length - 1] + 1);
-    this.setState({numbers,isLoggedIn: false})
+    numbers.push(this.state.numbers[this.state.numbers.length - 1] + 1);
+    this.setState({numbers, isLoggedIn: false})
   }
 
   handleLogoutClick(e) {
@@ -78,14 +78,13 @@ class Clock extends Component {
 
   handleClick(e) {
     // console.log(e);
-    
+
     e.preventDefault();
   }
 
   render() {
-    const isLoggedIn = this.state.isLoggedIn;
-    // console.log(isLoggedIn,this.state.isLoggedIn)
-    // console.count();
+    // const isLoggedIn = this.state.isLoggedIn;
+    // console.log(isLoggedIn,this.state.isLoggedIn) console.count();
     let button = null;
     if (this.state.isLoggedIn) {
       button = <LoginButton onClick={this
@@ -117,14 +116,17 @@ class Clock extends Component {
           Click me
         </a>
         {button}
-      <ul>
-        {
-          this.state.numbers.map((number) => 
-            <li>{number}
-            </li>
-          )
-        }
-      </ul>
+        <ul>
+          {this
+            .state
+            .numbers
+            .map((number) => <li key={number.toString()}>{number}
+            </li>)
+}
+          {/*
+  Key added to remove the array repeat DOM issue
+  */}
+        </ul>
       </div>
     );
   }
