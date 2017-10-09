@@ -26,7 +26,7 @@ class Clock extends Component {
       isToggleOn: true,
       isLoggedIn: false,
       numbers: [1],
-      name:''
+      name:'Hey'
     };
     this.bindValue = this
       .bindValue
@@ -37,11 +37,9 @@ class Clock extends Component {
   }
 
   bindValue = (property, e) => {
-    // this.
-    console.log(property, e);
-    let tempState = {};
-    tempState[property] = e.target.value;
-    this.setState(tempState);
+    this.setState({
+      [property]:e.target.value
+    });
   }
   componentDidUpdate() {
     // console.log('componentDidUpdate');
