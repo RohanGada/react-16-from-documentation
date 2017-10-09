@@ -25,17 +25,21 @@ class Clock extends Component {
       date,
       isToggleOn: true,
       isLoggedIn: false,
-      numbers: [1]
+      numbers: [1],
+      name:''
     };
     this.bindValue = this
       .bindValue
       .bind(this);
+    this.handleSubmit = this
+      .handleSubmit
+      .bind(this);
   }
 
-  bindValue = (property,e) => {
+  bindValue = (property, e) => {
     // this.
-    console.log(property,e);
-    let tempState ={};
+    console.log(property, e);
+    let tempState = {};
     tempState[property] = e.target.value;
     this.setState(tempState);
   }
@@ -92,6 +96,11 @@ class Clock extends Component {
     e.preventDefault();
   }
 
+  handleSubmit(event) {
+    alert('A name was submitted: ' + this.state.name);
+    event.preventDefault();
+  }
+  
   render() {
     // const isLoggedIn = this.state.isLoggedIn;
     // console.log(isLoggedIn,this.state.isLoggedIn) console.count();
@@ -137,14 +146,14 @@ class Clock extends Component {
   Key added to remove the array repeat DOM issue
   */}
         </ul>
-        < form >
+        <form onSubmit={this.handleSubmit}>
           <label>
             Name:
             <input
               type="text"
               value={this.state.name}
               name="name"
-              onChange={(e)=> this.bindValue('name',e)}/>
+              onChange={(e) => this.bindValue('name', e)}/>
           </label>
           < input type="submit" value="Submit"/>
         </form>
