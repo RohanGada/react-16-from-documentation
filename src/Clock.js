@@ -32,9 +32,12 @@ class Clock extends Component {
       .bind(this);
   }
 
-  bindValue = (value,e) => {
+  bindValue = (property,e) => {
     // this.
-    console.log(value,e);
+    console.log(property,e);
+    let tempState ={};
+    tempState[property] = e.target.value;
+    this.setState(tempState);
   }
   componentDidUpdate() {
     // console.log('componentDidUpdate');
@@ -107,7 +110,7 @@ class Clock extends Component {
     }
     return (
       <div>
-        <h1>Hello, world!</h1>
+        <h1>Hello, world! {this.state.name}</h1>
         <h2>It is {this
             .state
             .date
