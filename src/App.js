@@ -18,6 +18,14 @@ class App extends Component {
         </p>
         <Clock date={new Date(new Date().setMinutes(20))}/>
         <Clock warn={true} date={new Date(new Date().setMinutes(20))}/>
+
+        {/* < form >
+          <label>
+            Name:
+            <input type="text" value={this.state.name} name="name" onChange={this.handleClick}/>
+          </label>
+          < input type="submit" value="Submit"/>
+        </form> */}
       </div>
     );
   }

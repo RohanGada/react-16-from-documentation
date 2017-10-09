@@ -27,8 +27,15 @@ class Clock extends Component {
       isLoggedIn: false,
       numbers: [1]
     };
+    this.bindValue = this
+      .bindValue
+      .bind(this);
   }
 
+  bindValue = (value,e) => {
+    // this.
+    console.log(value,e);
+  }
   componentDidUpdate() {
     // console.log('componentDidUpdate');
   }
@@ -127,6 +134,17 @@ class Clock extends Component {
   Key added to remove the array repeat DOM issue
   */}
         </ul>
+        < form >
+          <label>
+            Name:
+            <input
+              type="text"
+              value={this.state.name}
+              name="name"
+              onChange={(e)=> this.bindValue('name',e)}/>
+          </label>
+          < input type="submit" value="Submit"/>
+        </form>
       </div>
     );
   }
