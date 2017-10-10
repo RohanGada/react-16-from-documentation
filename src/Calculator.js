@@ -16,7 +16,7 @@ function tryConvert(temperature, convert) {
     }
     const output = convert(input);
     const rounded = Math.round(output * 1000) / 1000;
-    return rounded.toString();
+    return rounded;
 }
 
 class Calculator extends Component{
@@ -30,12 +30,14 @@ class Calculator extends Component{
         this.handleFahrenheitChange = this.handleFahrenheitChange.bind(this);
     }
     handleCelciusChange(e){
+console.log('handleCelciusChange');
         this.setState({
             scale:'f',
             temperature : e.target.value
         })
     }
     handleFahrenheitChange(e){
+console.log('handleFahrenheitChange');
         this.setState({
             scale:'c',
             temperature:e.target.value
@@ -49,12 +51,12 @@ class Calculator extends Component{
     render(){
         const temperature = this.state.temperature;
         const scale = this.state.scale;
-        const celcius = (scale === 'f') ? tryConvert(temperature,toFahrenheit):temperature;
-        const fahrenheit = (scale === 'c') ? tryConvert(temperature,toCelsius):temperature;
+        const celcius = (scale === 'f') ? tryConvert(temperature,toCelsius):temperature;
+        const fahrenheit = (scale === 'c') ? tryConvert(temperature,toFahrenheit):temperature;
         return (
             <div>
-                <TemperatureInput scale='c' temperature={celcius} onChange={this.handleCelciusChange}/>
-                <TemperatureInput scale='f' temperature={fahrenheit} onChange={this.handleFahrenheitChange}/>
+                <TemperatureInput scale='c' temperature={celcius} onTemperatureChange={this.handleCelciusChange}/>
+                <TemperatureInput scale='f' temperature={fahrenheit} onTemperatureChange={this.handleFahrenheitChange}/>
             </div>
         );
     }

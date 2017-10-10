@@ -18,10 +18,11 @@ class TemperatureInput extends Component{
     render(){
         const scale = this.props.scale;
         const temperature = this.props.temperature;
+        console.log(this.props)
         return (
            <fieldset>
                <legend>Enter temperature in {temperatureUnit[scale]}</legend>
-                <input type="number" min='0' value={temperature} onChange={this.props.onChange}/>
+                <input type="number" min='0' value={temperature} onChange={this.props.onTemperatureChange}/>
            </fieldset>
         )
     }
