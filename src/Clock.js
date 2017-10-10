@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-// import './App.css';
+// import './App.css'; function Component
 function LoginButton(props) {
   return (
     <button onClick={props.onClick}>
@@ -7,12 +7,20 @@ function LoginButton(props) {
     </button>
   );
 }
+//function Component
 function LogoutButton(props) {
   return (
     <button onClick={props.onClick}>
       Logout
     </button>
   );
+}
+//function Component
+function SayHello(props) {
+  if(!props.name){
+    return <h1>Hello Jon Doe!</h1>
+  }
+  return <h1>Hello {props.name}!</h1>
 }
 class Clock extends Component {
 
@@ -26,7 +34,7 @@ class Clock extends Component {
       isToggleOn: true,
       isLoggedIn: false,
       numbers: [1],
-      name:'Hey'
+      name: ''
     };
     this.bindValue = this
       .bindValue
@@ -37,9 +45,7 @@ class Clock extends Component {
   }
 
   bindValue = (property, e) => {
-    this.setState({
-      [property]:e.target.value
-    });
+    this.setState({[property]: e.target.value});
   }
   componentDidUpdate() {
     // console.log('componentDidUpdate');
@@ -98,7 +104,7 @@ class Clock extends Component {
     alert('A name was submitted: ' + this.state.name);
     event.preventDefault();
   }
-  
+
   render() {
     // const isLoggedIn = this.state.isLoggedIn;
     // console.log(isLoggedIn,this.state.isLoggedIn) console.count();
@@ -106,58 +112,62 @@ class Clock extends Component {
     if (this.state.isLoggedIn) {
       button = <LoginButton onClick={this
         .handleLoginClick
-        .bind(this)}/>
-    } else {
-      button = <LogoutButton onClick={this
-        .handleLogoutClick
-        .bind(this)}/>
-    }
-    if (this.state.warn) {
-      return null;
-    }
-    return (
-      <div>
-        <h1>Hello, world! {this.state.name}</h1>
-        <h2>It is {this
-            .state
-            .date
-            .toLocaleTimeString()}.</h2>
-        <button onClick={this
-          .activateLasers
-          .bind(this)}>
-          {this.state.isToggleOn
-            ? "YES"
-            : "NO"}
-        </button>
-        <a href='' onClick={this.handleClick}>
-          Click me
-        </a>
-        {button}
-        <ul>
-          {this
-            .state
-            .numbers
-            .map((number) => <li key={number.toString()}>{number}
-            </li>)
+        .bind(this)}/ >} else {
+  button = <LogoutButton onClick={this
+    .handleLogoutClick
+    .bind(this)}/>
 }
-          {/*
-  Key added to remove the array repeat DOM issue
-  */}
-        </ul>
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            Name:
-            <input
-              type="text"
-              value={this.state.name}
-              name="name"
-              onChange={(e) => this.bindValue('name', e)}/>
-          </label>
-          < input type="submit" value="Submit"/>
-        </form>
-      </div>
-    );
-  }
+if (this.state.warn) {
+  return null;
+}
+return (
+  <div>
+< SayHello name = {
+  this.state.name
+} />
+    <h2>It is {this
+        .state
+        .date
+        .toLocaleTimeString()}.</h2>
+    <button onClick={this
+      .activateLasers
+      .bind(this)}>
+      {this.state.isToggleOn
+        ? "YES"
+        : "NO"}
+    </button>
+    <a href='' onClick={this.handleClick}>
+      Click me
+    </a>
+    {button}
+    <ul>
+      {this
+        .state
+        .numbers
+        .map((number) => <li key={number.toString()}>{number}
+        </li>)
+}
+    </ul>
+    <form onSubmit={this.handleSubmit}>
+      <label>
+        Name:
+        <input
+          type="text"
+          value={this.state.name}
+          name="name"
+          onChange={(e) => this.bindValue('name', e)}/>
+      </label>
+      < input type="submit" value="Submit"/>
+    </form>
+    <fieldset >
+      <legend>
+        tryinf this
+      </legend>
+
+    </fieldset>
+  </div>
+);
+}
 }
 
 export default Clock;
