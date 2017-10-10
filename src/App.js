@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Clock from './Clock';
-
+import Calculator from './Calculator';
 class App extends Component {
   render() {
     return (
@@ -18,7 +18,7 @@ class App extends Component {
         </p>
         <Clock date={new Date(new Date().setMinutes(20))}/>
         <Clock warn={true} date={new Date(new Date().setMinutes(20))}/>
-
+        <Calculator/>
         {/* < form >
           <label>
             Name:
