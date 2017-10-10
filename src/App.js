@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 // import Clock from './Clock';
 // import Calculator from './Calculator';
-import WelcomeDialog from './WelcomeDialog';
+import SignUpDialog from './SignUpDialog';
 class App extends Component {
   render() {
     return (
@@ -20,7 +20,7 @@ class App extends Component {
         {/* <Clock date={new Date(new Date().setMinutes(20))}/> */}
         {/* <Clock warn={true} date={new Date(new Date().setMinutes(20))}/> */}
         {/* <Calculator/> */}
-      <WelcomeDialog/>
+      <SignUpDialog/>
         {/* < form >
           <label>
             Name:
