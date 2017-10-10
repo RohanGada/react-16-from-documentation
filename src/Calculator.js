@@ -1,4 +1,4 @@
-import React,{Component} from 'react';
+import React, {Component} from 'react';
 import TemperatureInput from './TemperatureInput'
 
 function toCelsius(fahrenheit) {
@@ -19,44 +19,49 @@ function tryConvert(temperature, convert) {
     return rounded;
 }
 
-class Calculator extends Component{
-    constructor(props){
+class Calculator extends Component {
+    constructor(props) {
         super(props);
-        this.state= {
-            scale:'c',
-            temperature:0
+        this.state = {
+            scale: 'c',
+            temperature: 0
         };
-        this.handleCelciusChange = this.handleCelciusChange.bind(this);
-        this.handleFahrenheitChange = this.handleFahrenheitChange.bind(this);
+        this.handleCelciusChange = this
+            .handleCelciusChange
+            .bind(this);
+        this.handleFahrenheitChange = this
+            .handleFahrenheitChange
+            .bind(this);
     }
-    handleCelciusChange(e){
-console.log('handleCelciusChange');
-        this.setState({
-            scale:'f',
-            temperature : e.target.value
-        })
+    handleCelciusChange(e) {
+        console.log('handleCelciusChange');
+        this.setState({scale: 'c', temperature: e.target.value})
     }
-    handleFahrenheitChange(e){
-console.log('handleFahrenheitChange');
-        this.setState({
-            scale:'c',
-            temperature:e.target.value
-        })
+    handleFahrenheitChange(e) {
+        console.log('handleFahrenheitChange');
+        this.setState({scale: 'f', temperature: e.target.value})
     }
-    // handleTemperatureChange (e){
-    //     this.setState({
-    //         temperature:e.target.value
-    //     });
-    // }
-    render(){
+    // handleTemperatureChange (e){     this.setState({
+    // temperature:e.target.value     }); }
+    render() {
         const temperature = this.state.temperature;
         const scale = this.state.scale;
-        const celcius = (scale === 'f') ? tryConvert(temperature,toCelsius):temperature;
-        const fahrenheit = (scale === 'c') ? tryConvert(temperature,toFahrenheit):temperature;
+        const celcius = (scale === 'f')
+            ? tryConvert(temperature, toCelsius)
+            : temperature;
+        const fahrenheit = (scale === 'c')
+            ? tryConvert(temperature, toFahrenheit)
+            : temperature;
         return (
             <div>
-                <TemperatureInput scale='c' temperature={celcius} onTemperatureChange={this.handleCelciusChange}/>
-                <TemperatureInput scale='f' temperature={fahrenheit} onTemperatureChange={this.handleFahrenheitChange}/>
+                <TemperatureInput
+                    scale='c'
+                    temperature={celcius}
+                    onTemperatureChange={this.handleCelciusChange}/>
+                <TemperatureInput
+                    scale='f'
+                    temperature={fahrenheit}
+                    onTemperatureChange={this.handleFahrenheitChange}/>
             </div>
         );
     }
